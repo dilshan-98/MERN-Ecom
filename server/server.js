@@ -13,6 +13,7 @@ app.use(fileUpload({
     useTempFiles: true
 }));
 
+//connect mongoDB
 const URI = process.env.MONGODB_URL;
 mongoose.connect(URI, {
     useNewUrlParser: true,
@@ -22,10 +23,10 @@ mongoose.connect(URI, {
     console.log('Connected to DB');
 })
 
-app.get('/', (req, res) => {
-    res.json("Hello");
-})
+//connect routes
+app.use('/user', require('./routes/userRouter'));
 
+//connect server 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

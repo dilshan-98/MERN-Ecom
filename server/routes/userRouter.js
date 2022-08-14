@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-router.post('/register', (req, res)=> {
-    res.json({msg: "Inside register route"});
-});
+const user = require('../controllers/userController');
+
+router.post('/register', user.register);
 
 module.exports = router;
